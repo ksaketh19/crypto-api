@@ -1,10 +1,11 @@
 package server
 
 import (
+	"crypto-api/server/services"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
-	"crypto-api/server/services"
 )
 
 type App struct {
@@ -20,6 +21,11 @@ func (a *App) setRouters() {
 	a.Get("/users/{id}", a.handleRequest(services.GetUser))
 	a.Post("/users", a.handleRequest(services.CreateUser))
 	a.Put("/users/{id}", a.handleRequest(services.UpdateUser))
+
+	// Cryptocurrrency related routing
+	a.Get("/currency", a.handleRequest(services.GetAllCurrencies))
+	a.Get("/currency/{cid}", a.handleRequest(services.GetCurrency))
+	a.Get("/currency/{cid}/timeline", a.handleRequest(services.GetCurrencyTimeline))
 }
 
 // Get wraps the router for GET method
