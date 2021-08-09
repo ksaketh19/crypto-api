@@ -350,7 +350,7 @@
             "type": "string",
             "format": "date-time"
           },
-          "payment_type": {
+          "transaction_type": {
             "type": "string"
           },
           "payment_mode": {
